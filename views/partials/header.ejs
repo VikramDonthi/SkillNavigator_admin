@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Navigator Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Skill Navigator Admin</h1>
+    <nav>
+      <% if (typeof loggedIn !== 'undefined' && loggedIn) { %>
+        <a href="/">Dashboard</a>
+        <a href="/add">Add New</a>
+        <a href="/logout">Logout</a>
+      <% } %>
+    </nav>
+  </header>
+  <main>

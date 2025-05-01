@@ -1,0 +1,45 @@
+<%- include('partials/header', { loggedIn: true }) %>
+  <h2><%= job ? 'Edit' : 'Add' %> Job</h2>
+  <form action="/save" method="POST">
+    <% if (job) { %>
+      <input type="hidden" name="id" value="<%= job._id %>">
+    <% } %>
+    
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" value="<%= job ? job.title : '' %>" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="sector">Sector:</label>
+      <input type="text" id="sector" name="sector" value="<%= job ? job.sector : '' %>" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="requiredSkills">Required Skills (comma separated):</label>
+      <input type="text" id="requiredSkills" name="requiredSkills" 
+             value="<%= job ? job.requiredSkills.join(', ') : '' %>" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="companies">Companies (comma separated):</label>
+      <input type="text" id="companies" name="companies" 
+             value="<%= job ? job.companies.join(', ') : '' %>" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="employabilityScore">Employability Score (0-100):</label>
+      <input type="number" id="employabilityScore" name="employabilityScore" 
+             value="<%= job ? job.employabilityScore : '' %>" min="0" max="100" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="recruitmentProcess">Recruitment Process (one step per line):</label>
+      <textarea id="recruitmentProcess" name="recruitmentProcess" rows="5" required>
+<%= job ? job.recruitmentProcess.join('\n') : '' %></textarea>
+    </div>
+    
+    <button type="submit" class="btn-save">Save</button>
+    <a href="/" class="btn-cancel">Cancel</a>
+  </form>
+<%- include('partials/footer') %>

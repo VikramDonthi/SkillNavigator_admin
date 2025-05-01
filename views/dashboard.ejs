@@ -1,0 +1,30 @@
+<%- include('partials/header', { loggedIn: true }) %>
+  <h2>Job Listings</h2>
+  <a href="/add" class="btn-add">Add New Job</a>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Sector</th>
+        <th>Skills</th>
+        <th>Score</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% jobs.forEach(job => { %>
+        <tr>
+          <td><%= job.title %></td>
+          <td><%= job.sector %></td>
+          <td><%= job.requiredSkills.join(', ') %></td>
+          <td><%= job.employabilityScore %></td>
+          <td class="actions">
+            <a href="/edit/<%= job._id %>" class="btn-edit">Edit</a>
+            <a href="/delete/<%= job._id %>" class="btn-delete" onclick="return confirm('Are you sure?')">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<%- include('partials/footer') %>
